@@ -27,7 +27,7 @@
             width: 90%;
             max-width: 450px;
             border-radius: 30px;
-            box-shadow: 0 20px 25px -5px rgba(14, 165, 233, 0.15);
+            box-shadow: 0 20px 25px -5px rgba(14, 165, 233, 0.2);
             overflow: hidden;
             border: 1px solid #e0f2fe;
             text-align: center;
@@ -45,11 +45,11 @@
             padding: 10px;
             border-radius: 50%;
             margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        /* NAMA SEKOLAH BESAR */
         .nama-sekolah {
-            font-size: 22px;
+            font-size: 24px; /* Ukuran Nama Sekolah Besar */
             font-weight: 800;
             margin: 0;
             line-height: 1.2;
@@ -64,7 +64,7 @@
         }
 
         .tahun-ajaran {
-            font-size: 15px;
+            font-size: 16px;
             opacity: 0.9;
         }
 
@@ -81,6 +81,7 @@
             box-sizing: border-box;
             margin-bottom: 20px;
             text-align: center;
+            font-family: 'Poppins';
         }
 
         button.btn-cari {
@@ -94,6 +95,12 @@
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.3);
+            transition: 0.3s;
+        }
+
+        button.btn-cari:hover {
+            background-color: #0284c7;
+            transform: translateY(-2px);
         }
 
         #hasil {
@@ -103,6 +110,11 @@
             padding: 20px;
             background: #f8fafc;
             border-radius: 20px;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; } to { opacity: 1; }
         }
 
         .info-row {
@@ -113,7 +125,6 @@
             padding-bottom: 5px;
         }
 
-        /* WARNA STATUS BERBEDA */
         .status-box {
             text-align: center;
             padding: 15px;
@@ -121,13 +132,22 @@
             font-weight: 800;
             margin-top: 15px;
             font-size: 18px;
+            text-transform: uppercase;
         }
 
-        /* Jika LULUS/ELIGIBLE -> Hijau */
-        .warna-hijau { background: #dcfce7; color: #166534; border: 2px solid #bbf7d0; }
+        /* WARNA HIJAU (KHUSUS ELIGIBLE) */
+        .warna-hijau { 
+            background: #dcfce7 !important; 
+            color: #166534 !important; 
+            border: 2px solid #bbf7d0; 
+        }
         
-        /* Jika TIDAK -> Merah */
-        .warna-merah { background: #fee2e2; color: #991b1b; border: 2px solid #fecdd3; }
+        /* WARNA MERAH (APAPUN SELAIN ELIGIBLE) */
+        .warna-merah { 
+            background: #fee2e2 !important; 
+            color: #991b1b !important; 
+            border: 2px solid #fecdd3; 
+        }
 
         .footer {
             padding: 20px;
@@ -161,26 +181,24 @@
         const nisn = document.getElementById('nisn').value;
         const resDiv = document.getElementById('hasil');
         
-        // PENTING: Masukkan URL Apps Script Anda di sini
-        const url = "TEMPEL_URL_WEB_APP_ANDA_DISINI";
+        // --- MASUKKAN LINK APPS SCRIPT ANDA DI BAWAH INI ---
+        const url = "https://script.google.com/macros/s/AKfycbwjaypkVDJXbzYyM7KVN3Ms4BNqm_WwMKLM0EO_m12_XUslYiuf3xnYezLwi9mmBLEm/exec";
 
         if (!nisn) { alert("Isi NISN dulu!"); return; }
 
         resDiv.style.display = "block";
-        resDiv.innerHTML = "<p style='text-align:center;'>Mengecek data...</p>";
+        resDiv.innerHTML = "<p style='text-align:center;'>Sedang mencari data...</p>";
 
         try {
             const r = await fetch(url + "?nisn=" + nisn);
             const d = await r.json();
 
             if (d.status === "DITEMUKAN") {
-                const ket = d.keterangan.toUpperCase().trim(); // Membaca teks dan hapus spasi berlebih
+                // Bersihkan teks: Huruf besar semua dan hapus spasi depan/belakang
+                const ket = d.keterangan.toUpperCase().trim();
                 
-                // LOGIKA TERBALIK:
-                // Hanya kata "ELIGIBLE" yang dapat warna HIJAU. 
-                // Semua tulisan lain selain itu otomatis MERAH.
+                // LOGIKA: Hanya tulisan "ELIGIBLE" yang jadi HIJAU. Selain itu MERAH.
                 let warnaKelas = "warna-merah"; 
-                
                 if (ket === "ELIGIBLE") {
                     warnaKelas = "warna-hijau";
                 }
@@ -191,17 +209,3 @@
                     <div class="status-box ${warnaKelas}">
                         ${d.keterangan}
                     </div>
-                    <button onclick="window.print()" style="width:100%; margin-top:15px; cursor:pointer; padding:10px; border-radius:10px; border:1px solid #ccc; background:white; font-family:'Poppins';">CETAK HASIL</button>
-                `;
-            } else {
-                resDiv.innerHTML = "<p style='color:red; text-align:center; font-weight:bold;'>Data NISN tidak ditemukan!</p>";
-            }
-        } catch (e) {
-            resDiv.innerHTML = "<p style='text-align:center;'>Gagal memuat data.</p>";
-        }
-    }
-</script>
-
-</body>
-</html>
-

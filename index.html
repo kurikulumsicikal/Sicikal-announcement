@@ -6,22 +6,164 @@
     <title>S1CIKAL ANNOUNCEMENT</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --biru: #0ea5e9; --bg: #f0f9ff; }
-        body { font-family: 'Poppins', sans-serif; background: var(--bg); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .container { background: white; width: 90%; max-width: 450px; border-radius: 30px; box-shadow: 0 20px 25px rgba(0,0,0,0.1); overflow: hidden; text-align: center; border: 1px solid #e0f2fe; }
-        .header { background: linear-gradient(135deg, #0ea5e9, #38bdf8); padding: 40px 20px; color: white; }
-        .header img { width: 80px; background: white; padding: 10px; border-radius: 50%; margin-bottom: 15px; }
-        .nama-sekolah { font-size: 22px; font-weight: 800; text-transform: uppercase; margin: 0; }
-        .judul-hasil { font-size: 26px; font-weight: 800; margin: 10px 0; }
+        :root { --biru: #0ea5e9; --biru-tua: #0369a1; --bg: #f0f9ff; }
+        
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: var(--bg); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+        }
+
+        .container { 
+            background: white; 
+            width: 90%; 
+            max-width: 450px; 
+            border-radius: 30px; 
+            box-shadow: 0 20px 25px rgba(14, 165, 233, 0.15); 
+            overflow: hidden; 
+            border: 1px solid #e0f2fe; 
+        }
+
+        .header { 
+            background: linear-gradient(135deg, #0ea5e9, #38bdf8); 
+            padding: 40px 20px; 
+            color: white; 
+            text-align: center;
+        }
+
+        .header img { 
+            width: 85px; 
+            background: white; 
+            padding: 10px; 
+            border-radius: 50%; 
+            margin-bottom: 15px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nama-sekolah { 
+            font-size: 20px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            margin: 0; 
+            letter-spacing: 0.5px;
+        }
+
+        .judul-hasil { 
+            font-size: 26px; 
+            font-weight: 800; 
+            margin: 8px 0; 
+            letter-spacing: 1px;
+        }
+
+        .tahun-pelajaran { 
+            font-size: 14px; 
+            opacity: 0.9; 
+            font-weight: 400; 
+        }
+
         .content { padding: 30px; }
-        input { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 15px; font-size: 16px; box-sizing: border-box; margin-bottom: 20px; text-align: center; }
-        button { width: 100%; background: var(--biru); color: white; padding: 16px; border: none; border-radius: 15px; font-size: 16px; font-weight: 700; cursor: pointer; }
-        #hasil { margin-top: 25px; display: none; text-align: left; padding: 20px; background: #f8fafc; border-radius: 20px; }
-        .info-row { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        .status-box { text-align: center; padding: 15px; border-radius: 15px; font-weight: 800; margin-top: 15px; font-size: 18px; text-transform: uppercase; }
-        /* Warna Status */
+
+        input { 
+            width: 100%; 
+            padding: 15px; 
+            border: 2px solid #e2e8f0; 
+            border-radius: 15px; 
+            font-size: 16px; 
+            box-sizing: border-box; 
+            margin-bottom: 20px; 
+            text-align: center; 
+            font-family: 'Poppins';
+            transition: 0.3s;
+        }
+
+        input:focus { border-color: var(--biru); outline: none; box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1); }
+
+        .btn-cari { 
+            width: 100%; 
+            background: var(--biru); 
+            color: white; 
+            padding: 16px; 
+            border: none; 
+            border-radius: 15px; 
+            font-size: 16px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            transition: 0.3s; 
+        }
+
+        .btn-cari:hover { background: var(--biru-tua); transform: translateY(-2px); }
+
+        #hasil { 
+            margin-top: 25px; 
+            display: none; 
+            text-align: left; 
+            padding: 20px; 
+            background: #f8fafc; 
+            border-radius: 20px; 
+            border: 1px solid #e2e8f0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .info-row { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 10px; 
+            border-bottom: 1px solid #eee; 
+            padding-bottom: 5px; 
+            font-size: 14px;
+        }
+
+        .status-box { 
+            text-align: center; 
+            padding: 15px; 
+            border-radius: 15px; 
+            font-weight: 800; 
+            margin-top: 15px; 
+            font-size: 18px; 
+            text-transform: uppercase; 
+        }
+
         .warna-hijau { background: #dcfce7 !important; color: #166534 !important; border: 2px solid #bbf7d0; }
         .warna-merah { background: #fee2e2 !important; color: #991b1b !important; border: 2px solid #fecdd3; }
+
+        .pesan-tambahan {
+            font-size: 12px;
+            text-align: center;
+            color: #64748b;
+            margin-top: 15px;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .btn-cetak { 
+            width: 100%; 
+            margin-top: 15px; 
+            background: white; 
+            color: #475569; 
+            padding: 12px; 
+            border: 1px solid #cbd5e1; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            font-family: 'Poppins'; 
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-cetak:hover { background: #f1f5f9; }
+
+        .footer { text-align: center; padding: 20px; font-size: 10px; color: #94a3b8; }
+
+        @media print {
+            body { background: white; padding: 0; margin: 0; }
+            .btn-cari, input, .btn-cetak, .footer { display: none; }
+            .container { box-shadow: none; border: none; width: 100%; max-width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -31,13 +173,17 @@
         <img src="logo.png" alt="Logo">
         <div class="nama-sekolah">SMAN 1 CIKALONGWETAN</div>
         <div class="judul-hasil">HASIL ELIGIBLE</div>
-        <div class="tahun-ajaran">Tahun Ajaran 2025/2026</div>
+        <div class="tahun-pelajaran">TAHUN PELAJARAN 2025/2026</div>
     </div>
+    
     <div class="content">
-        <input type="text" id="nisn" placeholder="Masukkan NISN Siswa">
-        <button onclick="cekData()">HASIL</button>
+        <input type="text" id="nisn" placeholder="Masukkan NISN Siswa" maxlength="10">
+        <button class="btn-cari" onclick="cekData()">CEK STATUS SEKARANG</button>
+        
         <div id="hasil"></div>
     </div>
+
+    <div class="footer">S1CIKAL Announcement System &copy; 2026</div>
 </div>
 
 <script>
@@ -48,25 +194,25 @@
         // GANTI LINK DI BAWAH INI DENGAN LINK /exec ANDA
         const url = "https://script.google.com/macros/s/AKfycbwjaypkVDJXbzYyM7KVN3Ms4BNqm_WwMKLM0EO_m12_XUslYiuf3xnYezLwi9mmBLEm/exec";
 
-        if (!nisn) { alert("Isi NISN dulu!"); return; }
+        if (!nisn) { alert("Silakan masukkan NISN!"); return; }
 
         resDiv.style.display = "block";
-        resDiv.innerHTML = "Mencari data...";
+        resDiv.innerHTML = "<p style='text-align:center; font-size:14px;'>Sedang memproses data...</p>";
 
         try {
             const r = await fetch(url + "?nisn=" + nisn);
             const d = await r.json();
 
             if (d.status === "DITEMUKAN") {
-                // LOGIKA: Ambil teks, jadikan huruf besar, hapus spasi
                 const ket = (d.keterangan || "").toUpperCase().trim();
                 
-                // Secara default MERAH
+                // LOGIKA WARNA & PESAN
                 let warnaKelas = "warna-merah"; 
-                
-                // HANYA jika tulisannya persis ELIGIBLE maka jadi HIJAU
+                let pesan = "Tetap semangat! Masih banyak jalur lain untuk menuju masa depanmu. Silakan konsultasi dengan Guru BK.";
+
                 if (ket === "ELIGIBLE") {
                     warnaKelas = "warna-hijau";
+                    pesan = "Selamat! Anda dinyatakan ELIGIBLE. Segera Hubungi Guru Bimbingan Konseling untuk informasi lebih lanjut.";
                 }
 
                 resDiv.innerHTML = `
@@ -75,12 +221,16 @@
                     <div class="status-box ${warnaKelas}">
                         ${d.keterangan}
                     </div>
+                    <div class="pesan-tambahan">
+                        *${pesan}
+                    </div>
+                    <button class="btn-cetak" onclick="window.print()">🖨️ CETAK BUKTI HASIL</button>
                 `;
             } else {
-                resDiv.innerHTML = "<p style='color:red; text-align:center;'>Data tidak ditemukan!</p>";
+                resDiv.innerHTML = "<p style='color:#e11d48; text-align:center; font-weight:600;'>NISN tidak terdaftar!</p>";
             }
         } catch (e) {
-            resDiv.innerHTML = "<p style='color:red; text-align:center;'>Gagal memuat data. Cek URL Script Anda.</p>";
+            resDiv.innerHTML = "<p style='color:#e11d48; text-align:center;'>Gagal terhubung ke server.</p>";
         }
     }
 </script>

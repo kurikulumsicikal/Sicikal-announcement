@@ -6,49 +6,48 @@
     <title>S1CIKAL ANNOUNCEMENT</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Times+New+Roman&display=swap" rel="stylesheet">
     <style>
-        :root { --biru-muda: #0ea5e9; --biru-terang: #38bdf8; --bg-biru: #f0f9ff; }
+        :root { --biru: #0ea5e9; --biru-terang: #38bdf8; --bg: #f0f9ff; }
         
-        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-biru); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-
-        /* --- TAMPILAN WEB (Gaya Sebelumnya) --- */
-        .container { background: white; width: 90%; max-width: 450px; border-radius: 30px; box-shadow: 0 20px 25px -5px rgba(14, 165, 233, 0.2); overflow: hidden; border: 1px solid #e0f2fe; text-align: center; }
-        .header-web { background: linear-gradient(135deg, var(--biru-muda), var(--biru-terang)); padding: 40px 20px; color: white; }
-        .header-web img { width: 80px; background: white; padding: 10px; border-radius: 50%; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .nama-sekolah-web { font-size: 20px; font-weight: 800; margin: 0; text-transform: uppercase; }
-        .judul-hasil-web { font-size: 24px; font-weight: 800; margin: 10px 0; letter-spacing: 1px; }
-
+        body { font-family: 'Poppins', sans-serif; background: var(--bg); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        
+        /* --- TAMPILAN WEB (VERSI AWAL) --- */
+        .container { background: white; width: 90%; max-width: 450px; border-radius: 30px; box-shadow: 0 20px 25px rgba(0,0,0,0.1); overflow: hidden; text-align: center; border: 1px solid #e0f2fe; }
+        .header-web { background: linear-gradient(135deg, var(--biru), var(--biru-terang)); padding: 40px 20px; color: white; }
+        .header-web img { width: 80px; background: white; padding: 10px; border-radius: 50%; margin-bottom: 15px; }
+        .nama-sekolah-web { font-size: 20px; font-weight: 800; text-transform: uppercase; margin: 0; }
+        .judul-hasil-web { font-size: 26px; font-weight: 800; margin: 10px 0; }
+        
         .content { padding: 30px; }
         input { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 15px; font-size: 16px; box-sizing: border-box; margin-bottom: 20px; text-align: center; font-family: 'Poppins'; }
-        .btn-cari { width: 100%; background-color: var(--biru-muda); color: white; padding: 16px; border: none; border-radius: 15px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; }
-        .btn-cari:hover { background-color: #0284c7; transform: translateY(-2px); }
-
-        #hasil-web { margin-top: 25px; display: none; text-align: left; padding: 20px; background: #f8fafc; border-radius: 20px; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .info-row { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px; font-size: 14px; }
+        .btn-cari { width: 100%; background: var(--biru); color: white; padding: 16px; border: none; border-radius: 15px; font-size: 16px; font-weight: 700; cursor: pointer; }
+        
+        #hasil-web { margin-top: 25px; display: none; text-align: left; padding: 20px; background: #f8fafc; border-radius: 20px; }
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; font-size: 14px; }
         .status-box-web { text-align: center; padding: 15px; border-radius: 15px; font-weight: 800; margin-top: 15px; font-size: 18px; text-transform: uppercase; }
-
+        
         .warna-hijau { background: #dcfce7 !important; color: #166534 !important; border: 2px solid #bbf7d0; }
         .warna-merah { background: #fee2e2 !important; color: #991b1b !important; border: 2px solid #fecdd3; }
 
         .btn-cetak { width: 100%; background: #475569; color: white; padding: 12px; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; margin-top: 15px; font-family: 'Poppins'; }
 
-        /* --- TAMPILAN SURAT (HIDDEN DI WEB) --- */
-        #area-surat-cetak { display: none; }
+        /* --- TAMPILAN CETAK (TANPA KOP) --- */
+        #area-cetak { display: none; }
 
         @media print {
-            @page { size: A4; margin: 1cm 1.5cm; }
+            @page { size: A4; margin: 2cm; }
             body { background: white; }
             .container { width: 100%; max-width: 100%; box-shadow: none; border: none; }
             .header-web, .btn-cari, input, .btn-cetak, #hasil-web { display: none !important; }
             
-            #area-surat-cetak { display: block !important; font-family: 'Times New Roman', Times, serif; color: black; line-height: 1.4; text-align: justify; }
-            .kop-surat { text-align: center; border-bottom: 4px solid black; margin-bottom: 20px; padding-bottom: 10px; display: flex; align-items: center; }
-            .kop-surat img { width: 80px; height: auto; margin-right: 20px; }
-            .kop-teks { text-align: center; flex: 1; }
-            .kop-teks h3 { margin: 0; font-size: 15px; font-weight: bold; line-height: 1.2; }
-            .kop-teks h2 { margin: 0; font-size: 18px; font-weight: bold; line-height: 1.2; }
-            .kop-teks p { margin: 0; font-size: 10px; line-height: 1.3; }
-            .status-badge-cetak { text-align: center; padding: 12px; border: 2px solid black; font-weight: bold; font-size: 18px; margin: 15px 0; text-transform: uppercase; }
+            #area-cetak { 
+                display: block !important; 
+                font-family: 'Times New Roman', Times, serif; 
+                color: black; 
+                line-height: 1.6; 
+                text-align: justify; 
+            }
+            .judul-surat { text-align: center; font-weight: bold; font-size: 18px; text-decoration: underline; margin-bottom: 30px; text-transform: uppercase; }
+            .status-badge-cetak { text-align: center; padding: 15px; border: 2px solid black; font-weight: bold; font-size: 20px; margin: 20px 0; text-transform: uppercase; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
         }
     </style>
@@ -70,31 +69,16 @@
             <div class="info-row"><span>Nama:</span><b id="web-nama"></b></div>
             <div class="info-row"><span>Kelas:</span><b id="web-kelas"></b></div>
             <div id="web-status-box" class="status-box-web"></div>
-            <button class="btn-cetak" onclick="window.print()">🖨️ CETAK HASIL</button>
+            <button class="btn-cetak" onclick="window.print()">🖨️ CETAK SURAT RESMI</button>
         </div>
 
-        <div id="area-surat-cetak">
-            <div class="kop-surat">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Logo_Provinsi_Jawa_Barat.svg/512px-Logo_Provinsi_Jawa_Barat.svg.png" alt="Logo Jabar">
-                <div class="kop-teks">
-                    <h3>PEMERINTAH DAERAH PROVINSI JAWA BARAT</h3>
-                    <h3>DINAS PENDIDIKAN</h3>
-                    <h3>CABANG DINAS PENDIDIKAN WILAYAH VI</h3>
-                    <h2>SMA NEGERI 1 CIKALONGWETAN</h2>
-                    <p>JL Raya Cikalongwetan No.153 Telepon (022) 6971029 Faksimil : (022) 6970732</p>
-                    <p>Website : www.sman1cikalongwetan.sch.id  E-mail : smansatucikalongwetan@gmail.com</p>
-                    <p>Kabupaten Bandung Barat - 40556</p>
-                </div>
-            </div>
-
-            <div style="text-align: center; font-weight: bold; font-size: 16px; text-decoration: underline; margin-bottom: 20px; text-transform: uppercase;">
-                Pengumuman Status Kelayakan Pendaftaran SNBP 2026
-            </div>
+        <div id="area-cetak">
+            <div class="judul-surat">SURAT KETERANGAN HASIL ELIGIBLE</div>
 
             <p>Melalui surat ini, SMAN 1 Cikalongwetan menyampaikan pengumuman status kelayakan pendaftaran SNBP tahun ajaran 2025/2026 bagi Anda berdasarkan kriteria pemeringkatan sekolah:</p>
             
-            <table style="width: 100%; margin: 15px 0; font-size: 16px;">
-                <tr><td width="35%">Nama Lengkap</td><td width="5%">:</td><td id="print-nama" style="font-weight: bold;"></td></tr>
+            <table style="width: 100%; margin: 20px 0; font-size: 18px;">
+                <tr><td width="30%">Nama Siswa</td><td width="5%">:</td><td id="print-nama" style="font-weight: bold;"></td></tr>
                 <tr><td>NISN</td><td>:</td><td id="print-nisn"></td></tr>
                 <tr><td>Kelas</td><td>:</td><td id="print-kelas"></td></tr>
             </table>
@@ -102,7 +86,7 @@
             <p>Berdasarkan kriteria pemeringkatan sekolah, Anda dinyatakan:</p>
             <div id="print-status-box" class="status-badge-cetak"></div>
 
-            <p style="margin-top: 25px;">
+            <p style="margin-top: 40px;">
                 Bukti keterangan ini diketahui oleh <strong>Sidiq Wachjono, S.Pd. M.Pd.</strong> Kepala SMAN 1 CIKALONGWETAN, di Kabupaten Bandung Barat Tanggal 21 Januari 2026 oleh selaku penanggung jawab satuan pendidikan.
             </p>
         </div>
@@ -126,6 +110,7 @@
                 const ket = (d.keterangan || "").toUpperCase().trim();
                 const warna = (ket === "ELIGIBLE") ? "warna-hijau" : "warna-merah";
 
+                // Update Web
                 document.getElementById('web-nama').innerText = d.nama;
                 document.getElementById('web-kelas').innerText = d.kelas;
                 const wb = document.getElementById('web-status-box');
@@ -133,6 +118,7 @@
                 wb.className = "status-box-web " + warna;
                 hasilWeb.style.display = "block";
 
+                // Update Cetak
                 document.getElementById('print-nama').innerText = d.nama;
                 document.getElementById('print-nisn').innerText = nisnInput;
                 document.getElementById('print-kelas').innerText = d.kelas;
@@ -143,7 +129,7 @@
                 alert("NISN tidak ditemukan!");
             }
         } catch (e) {
-            alert("Terjadi kesalahan sistem.");
+            alert("Gagal memuat data.");
         }
     }
 </script>

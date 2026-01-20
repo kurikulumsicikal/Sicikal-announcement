@@ -6,154 +6,22 @@
     <title>S1CIKAL ANNOUNCEMENT</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --biru-muda: #0ea5e9;
-            --biru-terang: #38bdf8;
-            --bg-biru: #f0f9ff;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-biru);
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            background: white;
-            width: 90%;
-            max-width: 450px;
-            border-radius: 30px;
-            box-shadow: 0 20px 25px -5px rgba(14, 165, 233, 0.2);
-            overflow: hidden;
-            border: 1px solid #e0f2fe;
-            text-align: center;
-        }
-
-        .header {
-            background: linear-gradient(135deg, var(--biru-muda), var(--biru-terang));
-            padding: 40px 20px;
-            color: white;
-        }
-
-        .header img {
-            width: 80px;
-            background: white;
-            padding: 10px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .nama-sekolah {
-            font-size: 24px; /* Ukuran Nama Sekolah Besar */
-            font-weight: 800;
-            margin: 0;
-            line-height: 1.2;
-            text-transform: uppercase;
-        }
-
-        .judul-hasil {
-            font-size: 26px;
-            font-weight: 800;
-            margin: 15px 0 5px 0;
-            letter-spacing: 1px;
-        }
-
-        .tahun-ajaran {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-
-        .content {
-            padding: 30px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 15px;
-            font-size: 16px;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-            text-align: center;
-            font-family: 'Poppins';
-        }
-
-        button.btn-cari {
-            width: 100%;
-            background-color: var(--biru-muda);
-            color: white;
-            padding: 16px;
-            border: none;
-            border-radius: 15px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.3);
-            transition: 0.3s;
-        }
-
-        button.btn-cari:hover {
-            background-color: #0284c7;
-            transform: translateY(-2px);
-        }
-
-        #hasil {
-            margin-top: 25px;
-            display: none;
-            text-align: left;
-            padding: 20px;
-            background: #f8fafc;
-            border-radius: 20px;
-            animation: fadeIn 0.5s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; } to { opacity: 1; }
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 5px;
-        }
-
-        .status-box {
-            text-align: center;
-            padding: 15px;
-            border-radius: 15px;
-            font-weight: 800;
-            margin-top: 15px;
-            font-size: 18px;
-            text-transform: uppercase;
-        }
-
-        /* WARNA HIJAU (KHUSUS ELIGIBLE) */
-        .warna-hijau { 
-            background: #dcfce7 !important; 
-            color: #166534 !important; 
-            border: 2px solid #bbf7d0; 
-        }
-        
-        /* WARNA MERAH (APAPUN SELAIN ELIGIBLE) */
-        .warna-merah { 
-            background: #fee2e2 !important; 
-            color: #991b1b !important; 
-            border: 2px solid #fecdd3; 
-        }
-
-        .footer {
-            padding: 20px;
-            font-size: 11px;
-            color: #94a3b8;
-        }
+        :root { --biru: #0ea5e9; --bg: #f0f9ff; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: white; width: 90%; max-width: 450px; border-radius: 30px; box-shadow: 0 20px 25px rgba(0,0,0,0.1); overflow: hidden; text-align: center; border: 1px solid #e0f2fe; }
+        .header { background: linear-gradient(135deg, #0ea5e9, #38bdf8); padding: 40px 20px; color: white; }
+        .header img { width: 80px; background: white; padding: 10px; border-radius: 50%; margin-bottom: 15px; }
+        .nama-sekolah { font-size: 22px; font-weight: 800; text-transform: uppercase; margin: 0; }
+        .judul-hasil { font-size: 26px; font-weight: 800; margin: 10px 0; }
+        .content { padding: 30px; }
+        input { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 15px; font-size: 16px; box-sizing: border-box; margin-bottom: 20px; text-align: center; }
+        button { width: 100%; background: var(--biru); color: white; padding: 16px; border: none; border-radius: 15px; font-size: 16px; font-weight: 700; cursor: pointer; }
+        #hasil { margin-top: 25px; display: none; text-align: left; padding: 20px; background: #f8fafc; border-radius: 20px; }
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .status-box { text-align: center; padding: 15px; border-radius: 15px; font-weight: 800; margin-top: 15px; font-size: 18px; text-transform: uppercase; }
+        /* Warna Status */
+        .warna-hijau { background: #dcfce7 !important; color: #166534 !important; border: 2px solid #bbf7d0; }
+        .warna-merah { background: #fee2e2 !important; color: #991b1b !important; border: 2px solid #fecdd3; }
     </style>
 </head>
 <body>
@@ -165,15 +33,11 @@
         <div class="judul-hasil">HASIL ELIGIBLE</div>
         <div class="tahun-ajaran">Tahun Ajaran 2025/2026</div>
     </div>
-
     <div class="content">
-        <input type="text" id="nisn" placeholder="Masukkan NISN Siswa" maxlength="10">
-        <button class="btn-cari" onclick="cekData()">CEK DATA SEKARANG</button>
-
+        <input type="text" id="nisn" placeholder="Masukkan NISN Siswa">
+        <button onclick="cekData()">HASIL</button>
         <div id="hasil"></div>
     </div>
-
-    <div class="footer">Sistem Informasi Pengumuman Sekolah &copy; 2026</div>
 </div>
 
 <script>
@@ -181,24 +45,26 @@
         const nisn = document.getElementById('nisn').value;
         const resDiv = document.getElementById('hasil');
         
-        // --- MASUKKAN LINK APPS SCRIPT ANDA DI BAWAH INI ---
+        // GANTI LINK DI BAWAH INI DENGAN LINK /exec ANDA
         const url = "https://script.google.com/macros/s/AKfycbwjaypkVDJXbzYyM7KVN3Ms4BNqm_WwMKLM0EO_m12_XUslYiuf3xnYezLwi9mmBLEm/exec";
 
         if (!nisn) { alert("Isi NISN dulu!"); return; }
 
         resDiv.style.display = "block";
-        resDiv.innerHTML = "<p style='text-align:center;'>Sedang mencari data...</p>";
+        resDiv.innerHTML = "Mencari data...";
 
         try {
             const r = await fetch(url + "?nisn=" + nisn);
             const d = await r.json();
 
             if (d.status === "DITEMUKAN") {
-                // Bersihkan teks: Huruf besar semua dan hapus spasi depan/belakang
-                const ket = d.keterangan.toUpperCase().trim();
+                // LOGIKA: Ambil teks, jadikan huruf besar, hapus spasi
+                const ket = (d.keterangan || "").toUpperCase().trim();
                 
-                // LOGIKA: Hanya tulisan "ELIGIBLE" yang jadi HIJAU. Selain itu MERAH.
+                // Secara default MERAH
                 let warnaKelas = "warna-merah"; 
+                
+                // HANYA jika tulisannya persis ELIGIBLE maka jadi HIJAU
                 if (ket === "ELIGIBLE") {
                     warnaKelas = "warna-hijau";
                 }
@@ -209,3 +75,15 @@
                     <div class="status-box ${warnaKelas}">
                         ${d.keterangan}
                     </div>
+                `;
+            } else {
+                resDiv.innerHTML = "<p style='color:red; text-align:center;'>Data tidak ditemukan!</p>";
+            }
+        } catch (e) {
+            resDiv.innerHTML = "<p style='color:red; text-align:center;'>Gagal memuat data. Cek URL Script Anda.</p>";
+        }
+    }
+</script>
+
+</body>
+</html>

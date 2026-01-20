@@ -9,99 +9,104 @@
         :root { --biru: #0ea5e9; --bg: #f0f9ff; }
         body { font-family: 'Poppins', sans-serif; background: var(--bg); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
         
-        /* Tampilan di Layar HP/PC */
-        .container { background: white; width: 95%; max-width: 550px; border-radius: 25px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); overflow: hidden; border: 1px solid #e0f2fe; margin: 20px; }
-        .header-web { background: linear-gradient(135deg, #0ea5e9, #38bdf8); padding: 30px 20px; color: white; text-align: center; }
-        .header-web img { width: 70px; background: white; padding: 8px; border-radius: 50%; margin-bottom: 10px; }
-        .content { padding: 25px; }
-        input { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; box-sizing: border-box; margin-bottom: 15px; text-align: center; font-family: 'Poppins'; }
-        .btn-cari { width: 100%; background: var(--biru); color: white; padding: 15px; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; }
+        /* --- TAMPILAN WEB --- */
+        .container { background: white; width: 95%; max-width: 450px; border-radius: 30px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); overflow: hidden; border: 1px solid #e0f2fe; }
+        .header-web { background: linear-gradient(135deg, #0ea5e9, #38bdf8); padding: 35px 20px; color: white; text-align: center; }
+        .header-web img { width: 75px; background: white; padding: 8px; border-radius: 50%; margin-bottom: 10px; }
+        .content { padding: 30px; }
+        input { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 15px; font-size: 16px; box-sizing: border-box; margin-bottom: 20px; text-align: center; font-family: 'Poppins'; }
+        .btn-cari { width: 100%; background: var(--biru); color: white; padding: 16px; border: none; border-radius: 15px; font-size: 16px; font-weight: 700; cursor: pointer; }
         
-        /* Area Hasil */
-        #hasil { margin-top: 20px; display: none; }
-        .status-badge { text-align: center; padding: 15px; border-radius: 12px; font-weight: 800; margin: 15px 0; text-transform: uppercase; font-family: 'Poppins'; font-size: 20px; }
+        #hasil-web { margin-top: 25px; display: none; }
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px; font-size: 14px; }
+        .status-box-web { text-align: center; padding: 15px; border-radius: 15px; font-weight: 800; margin-top: 15px; font-size: 18px; text-transform: uppercase; }
+        
         .warna-hijau { background: #dcfce7 !important; color: #166534 !important; border: 2px solid #bbf7d0; }
         .warna-merah { background: #fee2e2 !important; color: #991b1b !important; border: 2px solid #fecdd3; }
 
-        /* AREA SURAT (Muncul saat Print) */
-        #area-surat { display: none; font-family: 'Times New Roman', Times, serif; color: black; line-height: 1.5; text-align: justify; }
-        
+        .btn-cetak { width: 100%; background: #475569; color: white; padding: 12px; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; margin-top: 15px; font-family: 'Poppins'; }
+
+        /* --- TAMPILAN CETAK (SURAT) --- */
+        #area-surat-cetak { display: none; }
+
         @media print {
             @page { size: A4; margin: 1cm 1.5cm; }
             body { background: white; }
-            .container { width: 100%; max-width: 100%; box-shadow: none; border: none; margin: 0; }
-            .header-web, .btn-cari, input, .btn-cetak { display: none !important; }
-            #hasil { display: block !important; }
-            #area-surat { display: block !important; }
-            .status-badge { border: 2px solid black; color: black !important; background: transparent !important; }
+            .container { width: 100%; max-width: 100%; box-shadow: none; border: none; }
+            .header-web, .btn-cari, input, .btn-cetak, #hasil-web { display: none !important; }
+            
+            #area-surat-cetak { 
+                display: block !important; 
+                font-family: 'Times New Roman', Times, serif; 
+                color: black; 
+                line-height: 1.4; 
+                text-align: justify; 
+            }
+            .kop-surat { text-align: center; border-bottom: 3.5px solid black; margin-bottom: 20px; padding-bottom: 10px; display: flex; align-items: center; }
+            .kop-surat img { width: 80px; height: auto; margin-right: 15px; }
+            .kop-teks { text-align: center; flex: 1; }
+            .kop-teks h3 { margin: 0; font-size: 14px; font-weight: bold; }
+            .kop-teks h2 { margin: 0; font-size: 17px; font-weight: bold; }
+            .kop-teks p { margin: 0; font-size: 9.5px; }
+            
+            .status-badge-cetak { text-align: center; padding: 10px; border: 2px solid black; font-weight: bold; font-size: 18px; margin: 15px 0; text-transform: uppercase; }
+            
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
         }
-
-        /* Kop Surat Resmi SMAN 1 Cikalongwetan */
-        .kop-surat { text-align: center; border-bottom: 3px solid black; margin-bottom: 20px; padding-bottom: 10px; position: relative; }
-        .kop-surat img { width: 90px; position: absolute; left: 0; top: 0; }
-        .kop-teks { padding-left: 90px; padding-right: 20px; }
-        .kop-teks h3 { margin: 0; font-size: 16px; font-weight: bold; }
-        .kop-teks h2 { margin: 0; font-size: 19px; font-weight: bold; }
-        .kop-teks p { margin: 0; font-size: 10.5px; line-height: 1.3; }
-
-        .btn-cetak { width: 100%; background: #475569; color: white; padding: 12px; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; margin-top: 10px; font-family: 'Poppins'; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header-web">
-        <img src="logo.png" alt="Logo">
+        <img src="logo.png" alt="Logo Sekolah">
         <div style="font-size: 18px; font-weight: 800;">SMA NEGERI 1 CIKALONGWETAN</div>
-        <div style="font-size: 14px; opacity: 0.9;">S1CIKAL ANNOUNCEMENT</div>
+        <div style="font-size: 13px; opacity: 0.9;">S1CIKAL ANNOUNCEMENT</div>
     </div>
 
     <div class="content">
         <input type="text" id="nisn" placeholder="Masukkan NISN Siswa" maxlength="10">
         <button class="btn-cari" onclick="cekData()">CEK STATUS SEKARANG</button>
 
-        <div id="hasil">
-            <div id="area-surat">
-                <div class="kop-surat">
-                    <img src="logo.png" alt="Logo">
-                    <div class="kop-teks">
-                        <h3>PEMERINTAH DAERAH PROVINSI JAWA BARAT</h3>
-                        <h3>DINAS PENDIDIKAN</h3>
-                        <h3>CABANG DINAS PENDIDIKAN WILAYAH VI</h3>
-                        <h2>SMA NEGERI 1 CIKALONGWETAN</h2>
-                        <p>JL Raya Cikalongwetan No.153 Telepon (022) 6971029 Faksimil : (022) 6970732</p>
-                        <p>Website : www.sman1cikalongwetan.sch.id  E-mail : smansatucikalongwetan@gmail.com</p>
-                        <p>Kabupaten Bandung Barat - 40556</p>
-                    </div>
-                </div>
+        <div id="hasil-web">
+            <div class="info-row"><span>Nama:</span><b id="web-nama"></b></div>
+            <div class="info-row"><span>Kelas:</span><b id="web-kelas"></b></div>
+            <div id="web-status-box" class="status-box-web"></div>
+            <button class="btn-cetak" onclick="window.print()">🖨️ CETAK SURAT RESMI</button>
+        </div>
 
-                <div style="text-align: center; font-weight: bold; font-size: 16px; text-decoration: underline; margin-bottom: 20px;">
-                    PENGUMUMAN STATUS KELAYAKAN PENDAFTARAN SNBP 2026
-                </div>
-
-                <p>Melalui surat ini, SMAN 1 Cikalongwetan menyampaikan pengumuman status kelayakan pendaftaran SNBP tahun ajaran 2025/2026 bagi Anda berdasarkan kriteria pemeringkatan sekolah:</p>
-                
-                <table style="width: 100%; margin: 15px 0; font-size: 16px;">
-                    <tr><td width="35%">Nama Lengkap</td><td width="5%">:</td><td id="res-nama" style="font-weight: bold;">-</td></tr>
-                    <tr><td>NISN</td><td>:</td><td id="res-nisn">-</td></tr>
-                    <tr><td>Kelas</td><td>:</td><td id="res-kelas">-</td></tr>
-                </table>
-
-                <p>Berdasarkan data nilai raport dan hasil pemeringkatan, Anda dinyatakan:</p>
-                
-                <div id="res-status-box" class="status-badge">STATUS</div>
-
-                <p style="margin-top: 30px; line-height: 1.6;">
-                    Bukti keterangan ini diketahui oleh <strong>Sidiq Wachjono, S.Pd. M.Pd.</strong> Kepala SMAN 1 CIKALONGWETAN, di Kabupaten Bandung Barat Tanggal 21 Januari 2026 oleh selaku penanggung jawab satuan pendidikan.
-                </p>
-
-                <div style="margin-top: 40px; border-top: 1px dashed #ccc; padding-top: 10px; font-size: 11px; text-align: center; color: #555;">
-                    Dokumen ini diterbitkan secara elektronik melalui S1CIKAL ANNOUNCEMENT SYSTEM dan merupakan bukti sah status kelayakan siswa.
+        <div id="area-surat-cetak">
+            <div class="kop-surat">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Logo_Provinsi_Jawa_Barat.svg/800px-Logo_Provinsi_Jawa_Barat.svg.png" alt="Logo Jabar">
+                <div class="kop-teks">
+                    <h3>PEMERINTAH DAERAH PROVINSI JAWA BARAT</h3>
+                    <h3>DINAS PENDIDIKAN</h3>
+                    <h3>CABANG DINAS PENDIDIKAN WILAYAH VI</h3>
+                    <h2>SMA NEGERI 1 CIKALONGWETAN</h2>
+                    <p>JL Raya Cikalongwetan No.153 Telepon (022) 6971029 Faksimil : (022) 6970732</p>
+                    <p>Website : www.sman1cikalongwetan.sch.id  E-mail : smansatucikalongwetan@gmail.com</p>
+                    <p>Kabupaten Bandung Barat - 40556</p>
                 </div>
             </div>
 
-            <button class="btn-cetak" onclick="window.print()">🖨️ CETAK SURAT PENGUMUMAN</button>
+            <div style="text-align: center; font-weight: bold; font-size: 15px; text-decoration: underline; margin-bottom: 20px; text-transform: uppercase;">
+                Pengumuman Status Kelayakan Pendaftaran SNBP 2026
+            </div>
+
+            <p>Melalui surat ini, SMAN 1 Cikalongwetan menyampaikan pengumuman status kelayakan pendaftaran SNBP tahun ajaran 2025/2026 bagi Anda berdasarkan kriteria pemeringkatan sekolah:</p>
+            
+            <table style="width: 100%; margin: 15px 0; font-size: 16px;">
+                <tr><td width="35%">Nama Lengkap</td><td width="5%">:</td><td id="print-nama" style="font-weight: bold;"></td></tr>
+                <tr><td>NISN</td><td>:</td><td id="print-nisn"></td></tr>
+                <tr><td>Kelas</td><td>:</td><td id="print-kelas"></td></tr>
+            </table>
+
+            <p>Berdasarkan kriteria pemeringkatan sekolah, Anda dinyatakan:</p>
+            <div id="print-status-box" class="status-badge-cetak"></div>
+
+            <p style="margin-top: 25px;">
+                Bukti keterangan ini diketahui oleh <strong>Sidiq Wachjono, S.Pd. M.Pd.</strong> Kepala SMAN 1 CIKALONGWETAN, di Kabupaten Bandung Barat Tanggal 21 Januari 2026 oleh selaku penanggung jawab satuan pendidikan.
+            </p>
         </div>
     </div>
 </div>
@@ -109,34 +114,37 @@
 <script>
     async function cekData() {
         const nisnInput = document.getElementById('nisn').value;
-        const resDiv = document.getElementById('hasil');
+        const hasilWeb = document.getElementById('hasil-web');
         const url = "https://script.google.com/macros/s/AKfycbwjaypkVDJXbzYyM7KVN3Ms4BNqm_WwMKLM0EO_m12_XUslYiuf3xnYezLwi9mmBLEm/exec";
 
-        if (!nisnInput) { alert("Silakan isi NISN!"); return; }
-
-        resDiv.style.display = "block";
-        document.getElementById('area-surat').style.display = "none";
+        if (!nisnInput) { alert("Isi NISN!"); return; }
+        hasilWeb.style.display = "none";
 
         try {
             const r = await fetch(url + "?nisn=" + nisnInput);
             const d = await r.json();
 
             if (d.status === "DITEMUKAN") {
-                document.getElementById('area-surat').style.display = "block";
                 const ket = (d.keterangan || "").toUpperCase().trim();
-                
-                document.getElementById('res-nama').innerText = d.nama;
-                document.getElementById('res-nisn').innerText = nisnInput;
-                document.getElementById('res-kelas').innerText = d.kelas;
-                
-                const statusBox = document.getElementById('res-status-box');
-                statusBox.innerText = d.keterangan;
+                const warna = (ket === "ELIGIBLE") ? "warna-hijau" : "warna-merah";
 
-                // Logika: Hanya ELIGIBLE yang hijau
-                statusBox.className = (ket === "ELIGIBLE") ? "status-badge warna-hijau" : "status-badge warna-merah";
+                // Update Web
+                document.getElementById('web-nama').innerText = d.nama;
+                document.getElementById('web-kelas').innerText = d.kelas;
+                const wb = document.getElementById('web-status-box');
+                wb.innerText = d.keterangan;
+                wb.className = "status-box-web " + warna;
+                hasilWeb.style.display = "block";
 
+                // Update Print
+                document.getElementById('print-nama').innerText = d.nama;
+                document.getElementById('print-nisn').innerText = nisnInput;
+                document.getElementById('print-kelas').innerText = d.kelas;
+                const pb = document.getElementById('print-status-box');
+                pb.innerText = d.keterangan;
+                pb.style.backgroundColor = (ket === "ELIGIBLE") ? "#dcfce7" : "#fee2e2";
             } else {
-                resDiv.innerHTML = "<p style='color:red; text-align:center; font-weight:bold; padding:20px;'>NISN tidak ditemukan!</p>";
+                alert("NISN tidak ditemukan!");
             }
         } catch (e) {
             alert("Terjadi kesalahan sistem.");

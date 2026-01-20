@@ -161,25 +161,28 @@
         const nisn = document.getElementById('nisn').value;
         const resDiv = document.getElementById('hasil');
         
-        // --- MASUKKAN LINK APPS SCRIPT ANDA DI BAWAH INI ---
-        const url = "https://script.google.com/macros/s/AKfycbwjaypkVDJXbzYyM7KVN3Ms4BNqm_WwMKLM0EO_m12_XUslYiuf3xnYezLwi9mmBLEm/exec";
+        // PENTING: Masukkan URL Apps Script Anda di sini
+        const url = "TEMPEL_URL_WEB_APP_ANDA_DISINI";
 
         if (!nisn) { alert("Isi NISN dulu!"); return; }
 
         resDiv.style.display = "block";
-        resDiv.innerHTML = "Mencari data...";
+        resDiv.innerHTML = "<p style='text-align:center;'>Mengecek data...</p>";
 
         try {
             const r = await fetch(url + "?nisn=" + nisn);
             const d = await r.json();
 
             if (d.status === "DITEMUKAN") {
-                const ket = d.keterangan.toUpperCase();
+                const ket = d.keterangan.toUpperCase().trim(); // Membaca teks dan hapus spasi berlebih
                 
-                // LOGIKA WARNA: Mencari kata "TIDAK"
-                let warnaKelas = "warna-hijau"; 
-                if (ket.includes("TIDAK") || ket.includes("BELUM")) {
-                    warnaKelas = "warna-merah";
+                // LOGIKA TERBALIK:
+                // Hanya kata "ELIGIBLE" yang dapat warna HIJAU. 
+                // Semua tulisan lain selain itu otomatis MERAH.
+                let warnaKelas = "warna-merah"; 
+                
+                if (ket === "ELIGIBLE") {
+                    warnaKelas = "warna-hijau";
                 }
 
                 resDiv.innerHTML = `
@@ -188,16 +191,17 @@
                     <div class="status-box ${warnaKelas}">
                         ${d.keterangan}
                     </div>
-                    <button onclick="window.print()" style="width:100%; margin-top:10px; cursor:pointer;">Cetak Hasil</button>
+                    <button onclick="window.print()" style="width:100%; margin-top:15px; cursor:pointer; padding:10px; border-radius:10px; border:1px solid #ccc; background:white; font-family:'Poppins';">CETAK HASIL</button>
                 `;
             } else {
-                resDiv.innerHTML = "<p style='color:red; text-align:center;'>Data NISN tidak ditemukan!</p>";
+                resDiv.innerHTML = "<p style='color:red; text-align:center; font-weight:bold;'>Data NISN tidak ditemukan!</p>";
             }
         } catch (e) {
-            resDiv.innerHTML = "Gagal memuat data.";
+            resDiv.innerHTML = "<p style='text-align:center;'>Gagal memuat data.</p>";
         }
     }
 </script>
 
 </body>
 </html>
+

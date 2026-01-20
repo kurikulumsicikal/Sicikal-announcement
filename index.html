@@ -10,7 +10,7 @@
         
         body { font-family: 'Poppins', sans-serif; background: var(--bg); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
         
-        /* --- TAMPILAN WEB (VERSI AWAL) --- */
+        /* --- TAMPILAN WEB --- */
         .container { background: white; width: 90%; max-width: 450px; border-radius: 30px; box-shadow: 0 20px 25px rgba(0,0,0,0.1); overflow: hidden; text-align: center; border: 1px solid #e0f2fe; }
         .header-web { background: linear-gradient(135deg, var(--biru), var(--biru-terang)); padding: 40px 20px; color: white; }
         .header-web img { width: 80px; background: white; padding: 10px; border-radius: 50%; margin-bottom: 15px; }
@@ -25,12 +25,15 @@
         .info-row { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; font-size: 14px; }
         .status-box-web { text-align: center; padding: 15px; border-radius: 15px; font-weight: 800; margin-top: 15px; font-size: 18px; text-transform: uppercase; }
         
+        /* Pesan Khusus di Web */
+        .pesan-khusus-web { font-size: 12px; text-align: center; color: #64748b; margin-top: 15px; font-style: italic; line-height: 1.4; }
+
         .warna-hijau { background: #dcfce7 !important; color: #166534 !important; border: 2px solid #bbf7d0; }
         .warna-merah { background: #fee2e2 !important; color: #991b1b !important; border: 2px solid #fecdd3; }
 
         .btn-cetak { width: 100%; background: #475569; color: white; padding: 12px; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; margin-top: 15px; font-family: 'Poppins'; }
 
-        /* --- TAMPILAN CETAK (TANPA KOP) --- */
+        /* --- TAMPILAN CETAK --- */
         #area-cetak { display: none; }
 
         @media print {
@@ -69,6 +72,9 @@
             <div class="info-row"><span>Nama:</span><b id="web-nama"></b></div>
             <div class="info-row"><span>Kelas:</span><b id="web-kelas"></b></div>
             <div id="web-status-box" class="status-box-web"></div>
+            
+            <div id="web-pesan" class="pesan-khusus-web"></div>
+
             <button class="btn-cetak" onclick="window.print()">🖨️ CETAK BUKTI KETERANGAN</button>
         </div>
 
@@ -83,11 +89,11 @@
                 <tr><td>Kelas</td><td>:</td><td id="print-kelas"></td></tr>
             </table>
 
-            <p>Berdasarkan kriteria hasil belajar, Anda dinyatakan:</p>
+            <p>Berdasarkan kriteria pemeringkatan sekolah, Anda dinyatakan:</p>
             <div id="print-status-box" class="status-badge-cetak"></div>
 
             <p style="margin-top: 40px;">
-                Bukti keterangan ini diketahui oleh <strong>Sidiq Wachjono, S.Pd. M.Pd.</strong> Selaku penanggung jawab satuan pendidikan Kepala SMAN 1 CIKALONGWETAN, di Kabupaten Bandung Barat, Tanggal 21 Januari 2026.
+                Bukti keterangan ini diketahui oleh <strong>Sidiq Wachjono, S.Pd. M.Pd.</strong> Selaku Kepala Sekolah di satuan pendidikan SMAN 1 CIKALONGWETAN, Kabupaten Bandung Barat Tanggal 21 Januari 2026.
             </p>
         </div>
     </div>
@@ -108,17 +114,24 @@
 
             if (d.status === "DITEMUKAN") {
                 const ket = (d.keterangan || "").toUpperCase().trim();
-                const warna = (ket === "ELIGIBLE") ? "warna-hijau" : "warna-merah";
+                let warna = "warna-merah";
+                let pesan = "Mohon maaf, tetap semangat! Silakan hubungi admin sekolah jika ada pertanyaan.";
 
-                // Update Web
+                if (ket === "ELIGIBLE") {
+                    warna = "warna-hijau";
+                    pesan = "Selamat! Anda berhak mengikuti tahapan selanjutnya (SNBP 2026).";
+                }
+
+                // Tampilkan ke Web
                 document.getElementById('web-nama').innerText = d.nama;
                 document.getElementById('web-kelas').innerText = d.kelas;
+                document.getElementById('web-pesan').innerText = "*" + pesan;
                 const wb = document.getElementById('web-status-box');
                 wb.innerText = d.keterangan;
                 wb.className = "status-box-web " + warna;
                 hasilWeb.style.display = "block";
 
-                // Update Cetak
+                // Siapkan untuk Cetak
                 document.getElementById('print-nama').innerText = d.nama;
                 document.getElementById('print-nisn').innerText = nisnInput;
                 document.getElementById('print-kelas').innerText = d.kelas;
@@ -136,4 +149,3 @@
 
 </body>
 </html>
-

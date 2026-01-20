@@ -3,157 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S1CIKAL ANNOUNCEMENT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>SICIKAL ANNOUNCEMENT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0ea5e9; /* Biru Muda Cerah */
-            --bg-body: #f0f9ff; /* Background Biru Sangat Muda */
-            --text-dark: #0c4a6e;
+            --biru-muda: #0ea5e9;
+            --biru-terang: #38bdf8;
+            --bg-biru: #f0f9ff;
+            --teks-gelap: #0c4a6e;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-dark);
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-biru);
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            color: var(--teks-gelap);
         }
 
-        .card {
+        .container {
             background: white;
             width: 90%;
-            max-width: 420px;
-            border-radius: 24px;
+            max-width: 450px;
+            border-radius: 25px;
             box-shadow: 0 20px 25px -5px rgba(14, 165, 233, 0.1);
             overflow: hidden;
             border: 1px solid #e0f2fe;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #0ea5e9, #38bdf8);
-            padding: 40px 20px;
-            color: white;
             text-align: center;
         }
 
+        /* HEADER SECTION */
+        .header {
+            background: linear-gradient(135deg, var(--biru-muda), var(--biru-terang));
+            padding: 40px 20px;
+            color: white;
+        }
+
         .header img {
-            width: 85px;
+            width: 80px;
             height: auto;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-            margin-bottom: 15px;
             background: white;
-            padding: 8px;
+            padding: 10px;
             border-radius: 50%;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .header h1 {
-            font-size: 20px;
+            font-size: 14px;
+            font-weight: 400;
             margin: 0;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .header p {
-            font-size: 13px;
-            margin: 5px 0 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
             opacity: 0.9;
         }
 
+        .header .judul-utama {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 10px 0 2px 0;
+            letter-spacing: 1px;
+        }
+
+        .header .tahun-ajaran {
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        /* FORM SECTION */
         .content {
-            padding: 30px;
+            padding: 35px 25px;
         }
 
-        .input-wrapper {
-            margin-bottom: 20px;
-        }
-
-        .input-wrapper label {
+        .label-input {
             display: block;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             margin-bottom: 8px;
+            text-align: left;
             color: #64748b;
             text-transform: uppercase;
         }
 
         input[type="text"] {
             width: 100%;
-            padding: 14px 16px;
+            padding: 15px;
             border: 2px solid #e2e8f0;
-            border-radius: 12px;
+            border-radius: 15px;
             font-size: 16px;
             box-sizing: border-box;
-            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            transition: 0.3s;
+            text-align: center;
         }
 
         input[type="text"]:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15);
+            border-color: var(--biru-muda);
             outline: none;
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
         }
 
-        button {
+        button.btn-cari {
             width: 100%;
-            background-color: var(--primary);
+            background-color: var(--biru-muda);
             color: white;
-            padding: 15px;
+            padding: 16px;
             border: none;
-            border-radius: 12px;
+            border-radius: 15px;
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.3);
         }
 
-        button:hover {
+        button.btn-cari:hover {
             background-color: #0284c7;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
         }
 
+        /* RESULT SECTION */
         #hasil {
             margin-top: 30px;
             display: none;
-            padding-top: 20px;
-            border-top: 1px solid #f1f5f9;
-            animation: fadeIn 0.5s ease;
+            text-align: left;
+            animation: slideUp 0.4s ease-out;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 15px;
         }
 
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-
-        .info-item .label { color: #64748b; }
-        .info-item .value { font-weight: 600; color: #0f172a; }
-
-        .status-pill {
-            margin-top: 20px;
-            padding: 12px;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 800;
-            font-size: 16px;
-            letter-spacing: 1px;
-        }
-
-        .eligible { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
-        .not-eligible { background: #fff1f2; color: #9f1239; border: 1px solid #fecdd3; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .footer {
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 8px;
+        }
+
+        .info-label { font-size: 13px; color: #64748b; }
+        .info-value { font-size: 14px; font-weight: 600; color: #1e293b; }
+
+        .status-box {
             text-align: center;
-            padding: 20px;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 800;
+            margin-top: 20px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .LULUS { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+        .TIDAK { background: #fee2e2; color: #991b1b; border: 1px solid #fecdd3; }
+
+        .footer {
+            padding: 25px;
             font-size: 11px;
             color: #94a3b8;
         }
@@ -161,69 +175,69 @@
 </head>
 <body>
 
-<div class="card">
+<div class="container">
     <div class="header">
         <img src="logo.png" alt="Logo Sekolah">
+        
         <h1>SMAN 1 CIKALONGWETAN</h1>
-        <p>Tahun Pelajaran 2025/2026</p>
+        <div class="judul-utama">HASIL ELIGIBLE</div>
+        <div class="tahun-ajaran">Tahun Ajaran 2025/2026</div>
     </div>
 
     <div class="content">
-        <div class="input-wrapper">
-            <label>Masukkan NISN Siswa</label>
-            <input type="text" id="nisn" placeholder="Contoh: 0081234567" maxlength="10">
-        </div>
+        <label class="label-input">Masukkan NISN Siswa</label>
+        <input type="text" id="nisn" placeholder="Contoh: 0081234567" maxlength="10">
         
-        <button onclick="prosesCek()">LIHAT HASIL</button>
+        <button class="btn-cari" onclick="cekData()">LIHAT HASIL</button>
 
         <div id="hasil"></div>
     </div>
 
     <div class="footer">
-        &copy; 2026 Sistem Pengumuman Digital
+        &copy; 2026 Sistem Pengumuman Digital Sekolah
     </div>
 </div>
 
 <script>
-    async function prosesCek() {
-        const nisnInput = document.getElementById('nisn').value;
-        const resDiv = document.getElementById('hasil');
+    async function cekData() {
+        const nisn = document.getElementById('nisn').value;
+        const display = document.getElementById('hasil');
         
-        // --- TEMPEL URL GOOGLE APPS SCRIPT ANDA DI SINI ---
-        const scriptUrl = "https://script.google.com/macros/s/AKfycbwjaypkVDJXbzYyM7KVN3Ms4BNqm_WwMKLM0EO_m12_XUslYiuf3xnYezLwi9mmBLEm/exec";
+        // PENTING: Ganti URL di bawah ini dengan URL Apps Script Anda
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbwjaypkVDJXbzYyM7KVN3Ms4BNqm_WwMKLM0EO_m12_XUslYiuf3xnYezLwi9mmBLEm/exec";
 
-        if (!nisnInput) {
-            alert("Harap isi NISN!");
+        if (!nisn) {
+            alert("Harap masukkan NISN terlebih dahulu!");
             return;
         }
 
-        resDiv.style.display = "block";
-        resDiv.innerHTML = "<p style='text-align:center; font-size:14px; color:#64748b;'>🔍 Mencari data di server...</p>";
+        display.style.display = "block";
+        display.innerHTML = "<p style='text-align:center; color:#64748b;'>Memeriksa basis data...</p>";
 
         try {
-            const response = await fetch(`${scriptUrl}?nisn=${nisnInput}`);
+            const response = await fetch(`${webAppUrl}?nisn=${nisn}`);
             const data = await response.json();
 
             if (data.status === "DITEMUKAN") {
-                const isLulus = data.keterangan.toUpperCase() === "ELIGIBLE" || data.keterangan.toUpperCase() === "LULUS";
+                const ket = data.keterangan.toUpperCase();
+                const isEligible = ket.includes("ELIGIBLE") || ket.includes("LULUS") || ket.includes("LOLOS");
                 
-                resDiv.innerHTML = `
-                    <div class="info-item"><span class="label">Nama Siswa</span><span class="value">${data.nama}</span></div>
-                    <div class="info-item"><span class="label">Kelas</span><span class="value">${data.kelas}</span></div>
-                    <div class="status-pill ${isLulus ? 'eligible' : 'not-eligible'}">
+                display.innerHTML = `
+                    <div class="info-row"><span class="info-label">Nama</span><span class="info-value">${data.nama}</span></div>
+                    <div class="info-row"><span class="info-label">Kelas</span><span class="info-value">${data.kelas}</span></div>
+                    <div class="status-box ${isEligible ? 'LULUS' : 'TIDAK'}">
                         ${data.keterangan}
                     </div>
-                    <button onclick="window.print()" style="margin-top:15px; background:#f1f5f9; color:#475569; font-size:12px; box-shadow:none;">CETAK PDF / PRINT</button>
+                    <button onclick="window.print()" style="width:100%; margin-top:15px; background:white; border:1px solid #cbd5e1; padding:8px; border-radius:10px; font-size:12px; cursor:pointer; font-family:'Poppins';">CETAK HASIL</button>
                 `;
             } else {
-                resDiv.innerHTML = "<p style='color:#e11d48; text-align:center; font-size:14px; font-weight:600;'>❌ NISN tidak ditemukan!</p>";
+                display.innerHTML = "<p style='color:#ef4444; text-align:center; font-weight:600;'>Data tidak ditemukan. Periksa kembali NISN Anda.</p>";
             }
         } catch (error) {
-            resDiv.innerHTML = "<p style='color:#e11d48; text-align:center; font-size:14px;'>⚠️ Gangguan koneksi, coba lagi.</p>";
+            display.innerHTML = "<p style='color:#ef4444; text-align:center;'>Gagal terhubung ke server. Pastikan URL Apps Script benar.</p>";
         }
     }
 </script>
 
 </body>
 </html>
-
